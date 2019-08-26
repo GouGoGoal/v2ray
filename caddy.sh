@@ -9,7 +9,7 @@ chown -R www-data:root /etc/caddy/ssl
 chmod 0770 /etc/caddy/ssl
 mkdir /etc/caddy/www
 chown www-data:www-data /etc/caddy/www
-curl -s  https://raw.githubusercontent.com/gougogoal/caddy_install/master/caddy.service  -o /etc/systemd/system/caddy.service
+curl -s  https://raw.githubusercontent.com/gougogoal/v2ray/master/caddy.service  -o /etc/systemd/system/caddy.service
 systemctl enable caddy
-curl -s https://raw.githubusercontent.com/gougogoal/caddy_install/master/Caddyfile -o /etc/caddy/Caddyfile
+curl -s https://raw.githubusercontent.com/gougogoal/v2ray/master/Caddyfile -o /etc/caddy/Caddyfile
 vi /etc/caddy/Caddyfile
