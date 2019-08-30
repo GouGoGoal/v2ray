@@ -14,8 +14,8 @@ chmod 0770 /etc/caddy/ssl
 mkdir /etc/caddy/www
 chown www-data:www-data /etc/caddy/www
 
-curl -s https://raw.githubusercontent.com/gougogoal/v2ray/master/caddy.service  -o /etc/systemd/system/caddy.service
-curl -s https://raw.githubusercontent.com/gougogoal/v2ray/master/Caddyfile -o /etc/caddy/Caddyfile
+curl -s https://raw.githubusercontent.com/gougogoal/v2ray/master/Caddy/caddy.service  -o /etc/systemd/system/caddy.service
+curl -s https://raw.githubusercontent.com/gougogoal/v2ray/master/Caddy/Caddyfile -o /etc/caddy/Caddyfile
 wget --no-check-certificate -P /etc/caddy "https://raw.githubusercontent.com/GouGoGoal/v2ray/master/Caddy/ssl.sh"
 
 systemctl enable caddy
