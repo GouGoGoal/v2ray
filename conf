@@ -1,0 +1,53 @@
+####sniproxy的配置文件
+
+user daemon
+pidfile /var/run/sniproxy.pid
+
+resolver {
+    nameserver 1.1.1.1
+    mode ipv4_only
+}
+error_log {
+    syslog daemon
+    priority notice
+}
+
+listen 0.0.0.0 80 {
+proto http
+}
+
+listen 0.0.0.0 443 {
+proto tls
+}
+
+table {
+(.*.|)lovegoogle.xyz$ 127.0.0.1:444
+.* *
+}
+
+#########
+#HAproxy的配置文件
+global
+ulimit-n  51200
+defaults
+log global
+mode    tcp
+option  dontlognull
+timeout connect 1000ms
+timeout client 150000ms
+timeout server 150000ms
+listen status
+bind 0.0.0.0:1080
+mode http
+log global
+stats refresh 30s
+stats uri /admin?stats
+stats realm Private lands
+stats auth admin:password
+stats hide-version
+frontend ssin
+bind *:587
+#如果是普通模式，那这里就填25，如果是SSL模式，就需要填465
+default_backend ssout
+backend ssout
+server server1 smtp.google.com  maxconn 204800
