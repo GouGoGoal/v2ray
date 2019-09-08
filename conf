@@ -7,10 +7,10 @@ resolver {
     nameserver 1.1.1.1
     mode ipv4_only
 }
-error_log {
-    syslog daemon
-    priority notice
-}
+#error_log {
+#    syslog daemon
+#    priority notice
+#}
 
 listen 0.0.0.0 80 {
 proto http
