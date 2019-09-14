@@ -22,7 +22,7 @@ systemctl enable caddy
 
 chmod 755 /etc/caddy/ssl.sh
 bash /etc/caddy/ssl.sh
-echo "4 0 0 0 1 root /etc/caddy/ssl.sh">>/etc/crontab
+echo "5 3 * * 1 root /etc/caddy/ssl.sh">>/etc/crontab
 systemctl status caddy
 
 
