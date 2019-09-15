@@ -22,7 +22,43 @@ proto tls
 
 table {
 (.*.|)lovegoogle.xyz$ 127.0.0.1:444
-.* *
+#奈飞
+#(.*.|)fast.com$ *
+(.*.|)netflix.com$ *
+(.*.|)netflix.net$ *
+(.*.|)nflxext.com$ *
+(.*.|)nflximg.net$ *
+(.*.|)nflxso.net$ *
+(.*.|)nflxvideo.net$ *
+#香港TVB
+(.*.|)mytvsuper.com$ *
+(.*.|)tvb.com$ *
+#台湾动画疯
+(.*.|)gamer.com.tw$ *
+(.*.|)bahamut.com.tw$ *
+(.*.|)hinet.net$ *
+(.*.|)fbcdn.net$ *
+(.*.|)gvt1.com$ *
+(.*.|)digicert.com$ *
+(.*.|)viblast.com$ *
+#B站
+(.*.|)bilibili.com$ *
+(.*.|)hdslb.com$ *
+#LineTV
+(.*.|)line.me$ *
+(.*.|)line-apps.com$ *
+#日本AbemaTV
+(.*.|)abema.tv$ *
+(.*.|)ameblo.jp$ *
+(.*.|)akamaized.net$ *
+#TVer
+(.*.|)tver.jp$ *
+(.*.|)amazonaws.com$ *
+(.*.|)yahoo.co.jp$ *
+(.*.|)brightcove.com$ *
+#niconico
+(.*.|)nicovideo.jp$ *
+(.*.|)nimg.jp$ *
 }
 
 #########
