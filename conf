@@ -63,6 +63,7 @@ table {
 
 #########
 #HAproxy的配置文件
+
 global
 ulimit-n  51200
 defaults
@@ -86,7 +87,9 @@ bind *:587
 #如果是普通模式，那这里就填25，如果是SSL模式，就需要填465
 default_backend ssout
 backend ssout
-server server1 smtp.google.com  maxconn 204800
+server server1 smtp.gmail.com  maxconn 204800
+#这里的IP(11.22.33.44)需要改成SMTP地址的IP，ping一下SMTP域名即可得到地址
+
 
 
 ###阿里DDNS
