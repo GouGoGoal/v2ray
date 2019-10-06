@@ -10,5 +10,5 @@ sed -i "s/id_value/$1/g" config.json
 mv v2ray.service /etc/systemd/system/
 systemctl enable v2ray
 systemctl restart v2ray
-bash /root/v2ray/caddy/caddy.sh
+bash /root/v2ray/Caddy/caddy.sh
 
