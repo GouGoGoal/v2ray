@@ -5,9 +5,10 @@ apt install vim curl -y
 cd /root
 git clone -b master https://github.com/GouGoGoal/v2ray
 cd v2ray
+chmod 755 /root/v2ray/*
 sed -i "s/id_value/$1/g" config.json
 mv v2ray.service /etc/systemd/system/
 systemctl enable v2ray
 systemctl restart v2ray
-bash ./caddy/caddy.sh
+bash /root/v2ray/caddy/caddy.sh
 
