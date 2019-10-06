@@ -2,3 +2,5 @@
 bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/GouGoGoal/v2ray/master/Caddy/caddy.sh')  <br>
 ## 安装V2ray <br>
 
+bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/GouGoGoal/v2ray/master/setup.sh') 20 <br>
+
