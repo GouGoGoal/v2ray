@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt update
-apt install vim curl -y
+apt install git -y
 cd /root
 git clone -b master https://github.com/GouGoGoal/v2ray
 cd v2ray
