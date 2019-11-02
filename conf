@@ -22,6 +22,9 @@ proto tls
 
 table {
 (.*.|)lovegoogle.xyz$ 127.0.0.1:444
+(.*.|)outsoul.club$ *
+(.*.|)outsoul.xyz$ *
+download.windowsupdate.com 127.0.0.1:81
 #奈飞
 #(.*.|)fast.com$ *
 (.*.|)netflix.com$ *
@@ -38,9 +41,6 @@ table {
 (.*.|)bahamut.com.tw$ *
 (.*.|)hinet.net$ *
 (.*.|)fbcdn.net$ *
-(.*.|)gvt1.com$ *
-(.*.|)digicert.com$ *
-(.*.|)viblast.com$ *
 #B站
 (.*.|)bilibili.com$ *
 (.*.|)hdslb.com$ *
