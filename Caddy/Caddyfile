@@ -1,6 +1,6 @@
 www.lovegoogle.xyz:443
 {
-proxy /update 127.0.0.1:1000 {
+proxy / 127.0.0.1:1000 {
 websocket
 header_upstream -Origin
 }
@@ -11,7 +11,7 @@ protocols tls1.0 tls1.2
 }
 download.windowsupdate.com:81
 {
-proxy /update 127.0.0.1:1000 {
+proxy / 127.0.0.1:1000 {
 websocket
 header_upstream -0rigin
 }
