@@ -13,7 +13,7 @@ download.windowsupdate.com:81
 {
 proxy / 127.0.0.1:1000 {
 websocket
-header_upstream -0rigin
+header_upstream -Origin
 }
 tls off
 }
