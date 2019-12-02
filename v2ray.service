@@ -1,7 +1,6 @@
 [Unit]
 Description=V2Ray Service
-After=network.target
-Wants=network.target
+After=rc-local.service
 
 [Service]
 # This service runs as root. You may consider to run it as another user for security concerns.
