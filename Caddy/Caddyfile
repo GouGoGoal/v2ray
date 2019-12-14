@@ -1,4 +1,4 @@
-www.lovegoogle.xyz:443
+*.lovegoogle.xyz:443
 {
 proxy / 127.0.0.1:1000 {
 websocket
