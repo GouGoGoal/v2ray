@@ -74,17 +74,6 @@ address=/nimg.jp/$jpip
 #server=/ameblo.jp/198.13.32.209
 #server=/akamaized.net/198.13.32.209
 
-#屏蔽地址
-address=/gov.cn/127.0.0.1
-address=/12377.cn/127.0.0.1
-address=/falunaz.net/127.0.0.1
-address=/falundafa.org/127.0.0.1
-address=/minghui.org/127.0.0.1
-address=/epochtimes.com/127.0.0.1
-address=/dongtaiwang.com/127.0.0.1
-address=/wujieliulan.com/127.0.0.1
-address=/mhradio.org/127.0.0.1
-address=/ntdtv.com/127.0.0.1
 ">/etc/dnsmasq.conf
 systemctl restart dnsmasq ssr v2ray
 }
