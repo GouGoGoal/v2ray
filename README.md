@@ -10,5 +10,9 @@ hkt.lovegoogle.xyz;0;2;ws;;path=/update|host=download.windowsupdate.com|inside_p
 
 ## 手动更改时间
 
-date -s 00:00:00 
+
+
+timedatectl set-timezone Asia/Shanghai
+date -s 00:00:00 <br>
 hwclock -w 
+hwclock --hctosys
