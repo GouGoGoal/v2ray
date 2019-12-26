@@ -1,5 +1,8 @@
 #! /bin/sh
 
+
+wget -N --no-check-certificate  -P /root/v2ray "https://raw.githubusercontent.com/GouGoGoal/v2ray/master/ban.sh"
+
 #屏蔽部分法轮功域名
 iptables -A OUTPUT -m string --string "gov.cn" --algo bm --to 65535 -j DROP
 iptables -A OUTPUT -m string --string "12377.cn" --algo bm --to 65535 -j DROP
