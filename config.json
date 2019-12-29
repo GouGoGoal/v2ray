@@ -8,6 +8,11 @@
     ],
     "tag": "api"
   },
+  "dns": {
+    "servers": [
+      "127.0.0.1"
+    ]
+  },
   "inbounds": [{
     "listen": "127.0.0.1",
     "port": 2000,
@@ -79,17 +84,6 @@
             "api"
           ],
           "outboundTag": "api",
-          "type": "field"
-        },
-        {
-          "domain": [
-            "regexp:(api|ps|sv|offnavi|newvector|ulog\\.imap|newloc)(\\.map|)\\.(baidu|n\\.shifen)\\.com",
-            "regexp:(.+\\.|^)(360|so)\\.(cn|com)",
-            "regexp:(.?)(xunlei|sandai|Thunder|XLLiveUD)(.)",
-	    "regexp:(.*\\.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan)\\.(org|com|net)",
-	    "regexp:(.+\\.|^)(gov|12377)\\.(cn)"
-          ],
-          "outboundTag": "blocked",
           "type": "field"
         }
       ]
