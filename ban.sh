@@ -17,8 +17,8 @@ iptables -A OUTPUT -m string --string "ntdtv" --algo bm --to 65535 -j DROP
 #360和百度
 iptables -A OUTPUT -m string --string "360.c" --algo bm --to 65535 -j DROP
 iptables -A OUTPUT -m string --string "so.c" --algo bm --to 65535 -j DROP
-iptables -A OUTPUT -m string --string "api.baidu.com" --algo bm --to 65535 -j DROP
 iptables -A OUTPUT -m string --string "shifen.com" --algo bm --to 65535 -j DROP
+iptables -A OUTPUT -m string --string "www.baidu.com" --algo bm --to 65535 -j ACCEPT
 iptables -A OUTPUT -m string --string "baidu.com" --algo bm --to 65535 -j DROP
 
 
