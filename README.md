@@ -12,7 +12,7 @@ hkt.lovegoogle.xyz;0;2;ws;;path=/update|host=download.windowsupdate.com|inside_p
 
 
 
-timedatectl set-timezone Asia/Shanghai
+timedatectl set-timezone Asia/Shanghai<br>
 date -s 00:00:00 <br>
-hwclock -w 
-hwclock --hctosys
+hwclock -w <br>
+hwclock --hctosys<br>
