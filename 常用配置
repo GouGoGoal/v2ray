@@ -38,7 +38,6 @@ download.windowsupdate.com 127.0.0.1:81
 (.*.|)gamer.com.tw$ *
 (.*.|)bahamut.com.tw$ *
 (.*.|)hinet.net$ *
-(.*.|)fbcdn.net$ *
 #B站
 (.*.|)bilibili.com$ *
 (.*.|)hdslb.com$ *
@@ -46,6 +45,8 @@ download.windowsupdate.com 127.0.0.1:81
 (.*.|)line.me$ *
 (.*.|)line-apps.com$ *
 #日本AbemaTV
+(.*.|)ameba.jp$ *
+(.*.|)abema.io$ *
 (.*.|)abema.tv$ *
 (.*.|)ameblo.jp$ *
 (.*.|)akamaized.net$ *
@@ -60,51 +61,22 @@ download.windowsupdate.com 127.0.0.1:81
 }" >/etc/sniproxy.conf
 
 
-
-
-
-
-
-
-
-
-
 #########
 #HAproxy的配置文件
 
 global
-ulimit-n  51200
-defaults
-log global
-mode    tcp
-option  dontlognull
-timeout connect 1000ms
-timeout client 150000ms
-timeout server 150000ms
-listen status
-bind 0.0.0.0:1080
-mode http
-log global
-stats refresh 30s
-stats uri /admin?stats
-stats realm Private lands
-stats auth admin:password
-stats hide-version
-frontend ssin
-bind *:587
-#如果是普通模式，那这里就填25，如果是SSL模式，就需要填465
-default_backend ssout
-backend ssout
-server server1 smtp.gmail.com  maxconn 204800
-#这里的IP(11.22.33.44)需要改成SMTP地址的IP，ping一下SMTP域名即可得到地址
-
-
-
-
-
-
-
-
+       maxconn 1024   #最大并发
+defaults   
+       log global
+       mode    tcp
+       option  dontlognull
+       timeout connect 1000ms
+       timeout client 150000ms
+       timeout server 150000ms
+listen google_smtp
+       mode tcp
+	   bind *:587
+	   server server1 smtp.gmail.com
 
 ###阿里DDNS
 cd /root
