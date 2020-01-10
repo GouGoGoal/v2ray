@@ -16,3 +16,5 @@ timedatectl set-timezone Asia/Shanghai<br>
 date -s 00:00:00 <br>
 hwclock -w <br>
 hwclock --hctosys<br>
+
+## 禁用UDP的时候使用   rdate -s time.nist.gov  来同步
