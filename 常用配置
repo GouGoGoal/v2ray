@@ -1,5 +1,5 @@
 ####sniproxy的配置文件
-echo "user daemon
+echo 'user daemon
 pidfile /var/run/sniproxy.pid
 
 resolver {
@@ -58,7 +58,7 @@ download.windowsupdate.com 127.0.0.1:81
 #niconico
 (.*.|)nicovideo.jp$ *
 (.*.|)nimg.jp$ *
-}" >/etc/sniproxy.conf
+}' >/etc/sniproxy.conf
 
 
 #########
