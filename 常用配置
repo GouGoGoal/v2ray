@@ -84,13 +84,18 @@ rm -ff ddns.sh
 wget https://bitbucket.org/ilemonrain/aliddns/downloads/AliDDNS-v2.0.sh
 mv AliDDNS-v2.0.sh ddns.sh
 chmod 755 ddns.sh
-echo "AliDDNS_DomainName=\"lovegoogle.xyz\"
-AliDDNS_SubDomainName=\"hkbn\"
-AliDDNS_TTL=\"600\"
-AliDDNS_AK=\"LTAIvQMNOvArM6XX\"
-AliDDNS_SK=\"o5EHMjdjN4rWWAhyMRELYbcaIvc9kn\"
-AliDDNS_LocalIP=\"curl ipv4.ip.sb\"
-AliDDNS_DomainServerIP=\"223.5.5.5\" ">/etc/OneKeyAliDDNS/config.cfg
+vi /etc/OneKeyAliDDNS/config.cfg
+
+
+AliDDNS_DomainName="lovegoogle.xyz"
+AliDDNS_SubDomainName="hkbn"
+AliDDNS_TTL="600"
+AliDDNS_AK="LTAIvQMNOvArM6XX"
+AliDDNS_SK="o5EHMjdjN4rWWAhyMRELYbcaIvc9kn"
+AliDDNS_LocalIP="curl ipv4.ip.sb"
+AliDDNS_DomainServerIP="223.5.5.5"
+
+
 ./ddns.sh config
 ./ddns.sh run
 echo "* * * * * root /root/ddns.sh run"
