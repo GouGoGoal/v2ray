@@ -57,6 +57,8 @@ address=/hdslb.com/$twip
 #address=/line.me/$twip
 #address=/line-apps.com/$twip
 #日本AbemaTV
+address=/ameba.jp/$jpip
+address=/abema.io/$jpip
 address=/abema.tv/$jpip
 address=/ameblo.jp/$jpip
 address=/akamaized.net/$jpip
@@ -70,10 +72,11 @@ address=/nicovideo.jp/$jpip
 address=/nimg.jp/$jpip
 
 #使用流媒体解锁服务
+#server=/ameba.jp/198.13.32.209
+#server=/abema.io/198.13.32.209
 #server=/abema.tv/198.13.32.209
 #server=/ameblo.jp/198.13.32.209
 #server=/akamaized.net/198.13.32.209
-
 ">/etc/dnsmasq.conf
 systemctl restart dnsmasq ssr v2ray
 }
