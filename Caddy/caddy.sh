@@ -16,13 +16,14 @@ chown www-data:www-data /etc/caddy/www
 
 curl -s https://raw.githubusercontent.com/gougogoal/v2ray/master/Caddy/caddy.service  -o /etc/systemd/system/caddy.service
 curl -s https://raw.githubusercontent.com/gougogoal/v2ray/master/Caddy/Caddyfile -o /etc/caddy/Caddyfile
-wget --no-check-certificate -P /etc/caddy "https://raw.githubusercontent.com/GouGoGoal/v2ray/master/Caddy/ssl.sh"
-
-systemctl enable caddy
-
+curl -s https://raw.githubusercontent.com/GouGoGoal/v2ray/master/Caddy/ssl.sh -o /etc/caddy/ssl.sh
 chmod 755 /etc/caddy/ssl.sh
 bash /etc/caddy/ssl.sh
 echo "5 3 * * 1 root /etc/caddy/ssl.sh">>/etc/crontab
-systemctl status caddy
+
+systemctl enable caddy
+systemctl restart caddy
+
+
 
 
