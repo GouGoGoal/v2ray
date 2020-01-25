@@ -84,6 +84,7 @@ rm -ff ddns.sh
 wget https://bitbucket.org/ilemonrain/aliddns/downloads/AliDDNS-v2.0.sh
 mv AliDDNS-v2.0.sh ddns.sh
 chmod 755 ddns.sh
+mkdir /etc/OneKeyAliDDNS
 vi /etc/OneKeyAliDDNS/config.cfg
 
 
