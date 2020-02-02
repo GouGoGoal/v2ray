@@ -58,6 +58,9 @@ download.windowsupdate.com 127.0.0.1:81
 #niconico
 (.*.|)nicovideo.jp$ *
 (.*.|)nimg.jp$ *
+#hulu
+(.*.|)hulu.jp$ *
+(.*.|)happyon.jp$ *
 }' >/etc/sniproxy.conf
 
 
