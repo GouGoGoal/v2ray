@@ -9,11 +9,11 @@ load /etc/caddy/ssl
 protocols tls1.0 tls1.2
 }
 }
-www.microsoft.com:81
-{
-proxy / 127.0.0.1:1000 {
-websocket
-header_upstream -Origin
-}
-tls off
-}
+#www.microsoft.com:81
+#{
+#proxy / 127.0.0.1:1000 {
+#websocket
+#header_upstream -Origin
+#}
+#tls off
+#}
