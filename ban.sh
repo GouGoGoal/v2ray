@@ -32,7 +32,7 @@ iptables -A OUTPUT -m string --string "BitTorrent" --algo bm --to 65535 -j REJEC
 iptables -A OUTPUT -m string --string ".torrent" --algo bm --to 65535 -j REJECT
 #邮件
 #iptables -A OUTPUT -p tcp -m multiport --dport 25,110,465:587,993:995 -j REJECT
-iptables -A OUTPUT -p tcp -m multiport --dport 25,110,465,993,995 -j REJECT
+#iptables -A OUTPUT -p tcp -m multiport --dport 25,110,465,993,995 -j REJECT
 
 #拉取规则
 wget -N --no-check-certificate  -P /root/v2ray "https://raw.githubusercontent.com/GouGoGoal/v2ray/master/ban.sh"
