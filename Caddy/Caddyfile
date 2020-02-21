@@ -6,7 +6,7 @@ header_upstream -Origin
 }
 tls {
 load /etc/caddy/ssl
-protocols tls1.0 tls1.2
+protocols tls1.2 tls1.3
 }
 }
 #www.microsoft.com:81
