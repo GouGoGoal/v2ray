@@ -97,6 +97,15 @@
     "SpeedTestCheckRate": 0,
     "panelUrl": "https://api.soulout.club",
     "panelKey": "souloutclub",
+    "mysql": {
+        "host": "3306.soulout.club",
+        "port": 3306,
+        "user": "souloutclub@souloutclub",
+        "password": "souloutclub",
+        "dbname": "panel"
+    },
+    "paneltype": 0,
+    "usemysql": 0,
     "downWithPanel": 1
   }
 }
