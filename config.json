@@ -18,8 +18,8 @@
     "tag": "api"
   }
   ],
-    "log_bak": {
-    "loglevel": "info"
+    "log": {
+    "loglevel": "error"
   },
   "outbounds": [{
     "protocol": "freedom",
@@ -34,9 +34,10 @@
   "policy": {
     "levels": {
       "0": {
-        "connIdle": 300,
-        "downlinkOnly": 5,
-        "handshake": 4,
+        "connIdle": 60,
+        "uplinkOnly": 0,
+        "downlinkOnly": 0,
+        "handshake": 2,
         "statsUserDownlink": true,
         "statsUserUplink": true,
         "uplinkOnly": 2
