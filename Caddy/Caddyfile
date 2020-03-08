@@ -5,15 +5,7 @@ websocket
 header_upstream -Origin
 }
 tls {
-load /etc/caddy/ssl
+load /root/v2ray/Caddy
 protocols tls1.2 tls1.3
 }
 }
-#www.microsoft.com:81
-#{
-#proxy / 127.0.0.1:1000 {
-#websocket
-#header_upstream -Origin
-#}
-#tls off
-#}

@@ -6,9 +6,8 @@ apt install git -y
 cd /root
 git clone -b master https://github.com/GouGoGoal/v2ray
 cd v2ray
-rm -rf  README.md setup.sh 常用配置 .git/
 chmod 755 /root/v2ray/*
-
+rm -rf  README.md setup.sh 常用配置 .git*
 #更改对接nodeid
 sed -i "s/id_value/$1/g" config.json
 
@@ -20,7 +19,7 @@ chmod 755 /etc/rc.local
 systemctl restart rc.local
 
 #开机自启服务
-cp v2ray.service /etc/systemd/system/
+mv -f v2ray.service /etc/systemd/system/
 systemctl enable v2ray
 systemctl restart v2ray
 #安装caddy
