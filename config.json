@@ -1,4 +1,4 @@
-{ 
+{
   "api": {
     "services": [
       "HandlerService",
@@ -18,54 +18,28 @@
     "tag": "api"
   }
   ],
-  "log_bak": {
+    "log_bak": {
     "loglevel": "info"
   },
   "outbounds": [{
     "protocol": "freedom",
-    "settings": {
-      "domainStrategy": "UseIP"
-    }
+    "settings": {}
   },
     {
       "protocol": "blackhole",
-      "settings": {"response": {
-        "type": "http"
-      }},
+      "settings": {},
       "tag": "blocked"
-    }, {
-      "protocol": "blackhole",
-      "settings": {"response": {
-        "type": "http"
-      }},
-      "tag": "blockedrule"
-    },{
-      "protocol": "blackhole",
-      "settings": {"response": {
-        "type": "http"
-      }},
-      "tag": "blockedip"
-    },{
-      "protocol": "blackhole",
-      "settings": {"response": {
-        "type": "none"
-      }},
-      "tag": "blockedNodeUserLimited"
-    },{
-        "protocol": "blackhole",
-        "settings": {},
-        "tag": "block"
-      }
+    }
   ],
   "policy": {
     "levels": {
       "0": {
         "connIdle": 300,
-        "downlinkOnly": 0,
+        "downlinkOnly": 5,
         "handshake": 4,
         "statsUserDownlink": true,
         "statsUserUplink": true,
-        "uplinkOnly": 0
+        "uplinkOnly": 2
       }
     },
     "system": {
@@ -75,49 +49,58 @@
   },
   "reverse": {},
   "routing": {
-    "rules": [{
-      "outboundTag": "blocked",
-      "protocol": [
-        "bittorrent"
-      ],
-      "type": "field"
+    "settings": {
+      "rules": [{
+        "ip": [
+          "0.0.0.0/8",
+          "10.0.0.0/8",
+          "100.64.0.0/10",
+          "127.0.0.0/8",
+          "169.254.0.0/16",
+          "172.16.0.0/12",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.168.0.0/16",
+          "198.18.0.0/15",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outboundTag": "blocked",
+        "protocol": [
+          "bittorrent"
+        ],
+        "type": "field"
+      },
+        {
+          "inboundTag": [
+            "api"
+          ],
+          "outboundTag": "api",
+          "type": "field"
+        }
+      ]
     },
-      {
-        "inboundTag": [
-          "api"
-        ],
-        "outboundTag": "api",
-        "type": "field"
-      },{
-        "outboundTag": "blockedNodeUserLimited",
-        "user": [
-          "admin@soulout.club"
-        ],
-        "type": "field"
-      }
-    ],
-    "domainStrategy": "AsIs"
+    "strategy": "rules"
   },
   "stats": {},
   "sspanel": {
-    "nodeid": id_value,
+    "nodeid":id_value,
     "checkRate": 60,
     "SpeedTestCheckRate": 0,
     "panelUrl": "https://api.soulout.club",
     "panelKey": "souloutclub",
-    "downWithPanel": 1,
-    "mu_regex":  "%5m%id.%suffix",
-    "mu_suffix": "microsoft.com",
     "mysql": {
-      "host": "3306.soulout.club",
-      "port": 3306,
-      "user": "souloutclub@souloutclub",
-      "password": "souloutclub",
-      "dbname": "panel"
+        "host": "3306.soulout.club",
+        "port": 3306,
+        "user": "souloutclub@souloutclub",
+        "password": "souloutclub",
+        "dbname": "panel"
     },
     "paneltype": 0,
     "usemysql": 0,
-    "proxy_tcp": 0
+    "downWithPanel": 1
   }
 }
-
