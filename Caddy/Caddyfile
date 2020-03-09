@@ -1,9 +1,12 @@
 *.lovegoogle.xyz:443
 {
-proxy / 127.0.0.1:1000 {
+
+proxy /update 127.0.0.1:1000 {
 websocket
 header_upstream -Origin
 }
+
+proxy / https://www.speedtest.net
 tls {
 load /root/v2ray/Caddy
 protocols tls1.2 tls1.3
