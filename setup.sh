@@ -6,7 +6,7 @@ apt install git -y
 cd /root
 git clone -b master https://github.com/GouGoGoal/v2ray
 cd v2ray
-chmod 755 /root/v2ray/*
+chmod 755 v2ray v2ctl *.sh
 rm -rf  README.md setup.sh 常用配置 .git*
 #更改对接nodeid
 sed -i "s/id_value/$1/g" config.json
