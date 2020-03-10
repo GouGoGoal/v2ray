@@ -1,6 +1,6 @@
 apt update
 cd /root/v2ray/Caddy
-chmod 755 *
+chmod 755 caddy *.sh
 mv -f  caddy.service  /etc/systemd/system/caddy.service
 
 echo "10 3 * * 1 root /root/v2ray/Caddy/tls_auto.sh">>/etc/crontab
