@@ -1,5 +1,5 @@
 ####sniproxy的配置文件
-echo 'user daemon
+echo 'user root
 pidfile /var/run/sniproxy.pid
 
 resolver {
