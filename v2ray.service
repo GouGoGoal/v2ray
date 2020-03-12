@@ -15,6 +15,6 @@ Restart=on-failure
 LimitNOFILE=512000
 # Don't restart in the case of configuration error
 RestartPreventExitStatus=23
-
+# MemoryHigh=512M
 [Install]
 WantedBy=multi-user.target
