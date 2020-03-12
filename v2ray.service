@@ -11,7 +11,7 @@ After=rc-local.service
 Type=simple
 PIDFile=/run/v2ray.pid
 ExecStart=/root/v2ray/v2ray -config /root/v2ray/config.json
-Restart=on-failure
+Restart=always
 LimitNOFILE=512000
 # Don't restart in the case of configuration error
 RestartPreventExitStatus=23
