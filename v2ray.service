@@ -16,7 +16,7 @@ LimitNOFILE=512000
 # Don't restart in the case of configuration error
 RestartPreventExitStatus=23
 # 柔性限制
-# MemoryHigh=20%
+MemoryHigh=90%
 # 刚性限制
 # MemoryMax=25%
 
