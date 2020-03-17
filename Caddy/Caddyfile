@@ -2,8 +2,8 @@
 {
 
 proxy /update 127.0.0.1:1000 {
-websocket
-header_upstream -Origin
+websocket    #反代websocket协议
+transparent  #向后方传递原始请求信息
 }
 
 proxy / https://www.speedtest.net
