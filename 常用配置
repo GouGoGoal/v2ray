@@ -4,7 +4,8 @@ pidfile /var/run/sniproxy.pid
 
 resolver {
     nameserver 1.1.1.1
-    mode ipv4_only
+    nameserver 8.8.8.8
+    mode ipv4_first
 }
 #error_log {
 #    syslog daemon
