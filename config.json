@@ -19,7 +19,7 @@
   }
   ],
     "log": {
-    "loglevel": "info"
+    "loglevel": "warning"
   },
   "outbounds": [{
     "protocol": "freedom",
