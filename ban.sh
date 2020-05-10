@@ -1,6 +1,6 @@
 #! /bin/sh
 
-iptables -F OUTPUT
+#iptables -F OUTPUT
 
 #政府地址
 iptables -A OUTPUT -m string --string "gov.cn" --algo bm --to 65535 -j REJECT
