@@ -1,17 +1,11 @@
 [Unit]
 Description=Caddy Service
-After=network-online.target
-Wants=network-online.target systemd-networkd-wait-online.service
-StartLimitIntervalSec=14400
-StartLimitBurst=10
+After=rc-local.service
 [Service]
 PIDFile=/run/caddy.pid
-ExecStart=/root/v2ray/Caddy/caddy   -log stdout -log-timestamps=false -quiet -agree=true -conf=/root/v2ray/Caddy/Caddyfile -quiet
-Restart=on-abnormal
+ExecStart=/usr/bin/caddy -log stdout -log-timestamps=false -quiet -agree=true -conf=/etc/caddy/Caddyfile -quiet
+Restart=always
 LimitNOFILE=512000
-LimitNPROC=512
-# Don't restart in the case of configuration error
-RestartPreventExitStatus=23
-
+LimitNPROC=512000
 [Install]
 WantedBy=multi-user.target
