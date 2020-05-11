@@ -1,12 +1,17 @@
 #!/bin/bash
 
-#安装工具，克隆代码
+if [ ! -f "/etc/redhat-release" ]; then
 apt update
-apt install git -y
+#安装环境
+apt update && apt install git -y
+else 
+yum update && yum install git -y
+fi
+
 cd /root
 git clone -b master https://github.com/GouGoGoal/v2ray
 cd v2ray
-chmod 755 v2ray v2ctl *.sh
+chmod +x v2ray v2ctl *.sh
 rm -rf  README.md setup.sh 常用配置 .git*
 #更改对接nodeid
 sed -i "s/id_value/$1/g" config.json
