@@ -1,8 +1,6 @@
 #!/bin/bash
 
 if [ ! -f "/etc/redhat-release" ]; then
-apt update
-#安装环境
 apt update && apt install git -y
 else 
 yum update && yum install git -y
@@ -16,7 +14,7 @@ rm -rf  README.md setup.sh 常用配置 .git*
 #更改对接nodeid
 sed -i "s/id_value/$1/g" config.json
 
-#更改开机自启
+#添加iptables屏蔽
 if [ ! -f "/etc/rc.local" ]; then
     echo '#!/bin/sh -e
     bash /root/v2ray/ban.sh
