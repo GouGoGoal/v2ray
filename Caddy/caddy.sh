@@ -1,9 +1,13 @@
-apt update
 cd /root/v2ray/Caddy
-chmod 755 caddy *.sh
-mv -f  caddy.service  /etc/systemd/system/caddy.service
+chmod +x caddy *.sh
+mv caddy /usr/bin
+mv caddy.service  /etc/systemd/system/caddy.service
+mkdir /etc/caddy && mv *  /etc/caddy
 
-echo "10 3 * * 1 root /root/v2ray/Caddy/tls_auto.sh">>/etc/crontab
-rm -rf caddy.sh ssl.sh
+echo "10 3 * * 1 root /etc/caddy/tls_auto.sh">>/etc/crontab
+rm -rf /etc/caddy/caddy.sh /etc/caddy/ssl.sh
+
 systemctl enable caddy
 systemctl restart caddy
+
+rm -rf /root/v2ray/Caddy
