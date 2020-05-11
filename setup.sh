@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ ! -f "/etc/redhat-release" ]; then
-apt update && apt install git -y
+    apt update && apt install git -y
 else 
-yum update && yum install git -y
+    yum update && yum install git -y
 fi
 
 cd /root
