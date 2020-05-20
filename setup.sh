@@ -16,11 +16,14 @@ sed -i "s/id_value/$1/g" config.json
 
 #添加iptables屏蔽
 if [ ! -f "/etc/rc.local" ]; then
+    if [ -f "/etc/rc.d/rc.local" ]; then
+        ln -s /etc/rc.d/rc.local /etc/rc.local
+    fi
     echo '#!/bin/sh -e
     bash /root/v2ray/ban.sh
     exit 0' >/etc/rc.local
     chmod +x /etc/rc.local
-    systemctl restart rc.local
+    systemctl restart rc-local
 else 
     sed -i '$i\bash /root/v2ray/ban.sh' /etc/rc.local
 fi
