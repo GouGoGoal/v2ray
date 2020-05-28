@@ -12,7 +12,7 @@ cd v2ray
 chmod +x v2ray v2ctl *.sh
 rm -rf  README.md setup.sh 常用配置 .git*
 #更改对接nodeid
-sed -i "s/id_value/$1/g" config0.json
+sed -i "s/id_value/$1/g" config.json
 
 #添加iptables屏蔽
 if [ ! -f "/etc/rc.local" ]; then
@@ -30,8 +30,8 @@ fi
 
 #开机自启服务
 mv -f v2ray.service /etc/systemd/system/
-systemctl enable v2ray@0
-systemctl restart v2ray@0
+systemctl enable v2ray
+systemctl restart v2ray
 #安装caddy
 bash /root/v2ray/Caddy/caddy.sh
 
