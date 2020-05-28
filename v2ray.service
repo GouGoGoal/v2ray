@@ -1,11 +1,11 @@
 [Unit]
-Description=V2Ray Service
+Description=V2Ray%i Service
 After=rc-local.service
 
 [Service]
 Type=simple
-PIDFile=/run/v2ray.pid
-ExecStart=/root/v2ray/v2ray -config /root/v2ray/config.json
+PIDFile=/run/v2ray%i.pid
+ExecStart=/root/v2ray/v2ray -config /root/v2ray/config%i.json
 Restart=always
 LimitNOFILE=512000
 LimitNPROC=512000
