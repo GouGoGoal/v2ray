@@ -11,11 +11,11 @@ protocols tls1.3
 }
 }
 
-:80
-{
-proxy /update 127.0.0.1:1000 {
-websocket    #反代websocket协议
-transparent  #向后方传递原始请求信息
-}
-tls off
-}
+#:80
+#{
+#proxy /update 127.0.0.1:1000 {
+#websocket    #反代websocket协议
+#transparent  #向后方传递原始请求信息
+#}
+#tls off
+#}
