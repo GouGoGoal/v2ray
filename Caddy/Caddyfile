@@ -1,6 +1,9 @@
 *.lovegoogle.xyz:443
 {
 timeouts  10s
+proxy /websocket 127.0.0.1:81 {
+websocket    #反代websocket协议
+}
 proxy /update 127.0.0.1:1000 {
 websocket    #反代websocket协议
 transparent  #向后方传递原始请求信息
@@ -15,6 +18,9 @@ protocols tls1.3
 #:80
 #{
 #timeouts  10s
+#proxy /websocket 127.0.0.1:81 {
+#websocket    #反代websocket协议
+#}
 #proxy /update 127.0.0.1:1000 {
 #websocket    #反代websocket协议
 #transparent  #向后方传递原始请求信息
