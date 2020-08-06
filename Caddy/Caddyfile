@@ -11,7 +11,7 @@ transparent  #向后方传递原始请求信息
 proxy / https://www.speedtest.net
 tls {
 load /etc/caddy
-protocols tls1.3
+protocols tls1.3 tls1.2
 }
 }
 
