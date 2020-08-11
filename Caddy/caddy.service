@@ -2,7 +2,6 @@
 Description=Caddy Service
 After=rc-local.service
 [Service]
-PIDFile=/run/caddy.pid
 ExecStart=/usr/bin/caddy -log stdout -log-timestamps=false -quiet -agree=true -conf=/etc/caddy/Caddyfile -quiet
 Restart=always
 LimitNOFILE=512000
