@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "适配常用Linux发行版本(CentOS、Debian、Ubuntu)，根据 https://nginx.org/en/linux_packages.html 中的步骤编写而成"
-echo '国内机访问nginx.org速度不佳，最好不要在用网高峰期执行'
+echo 'CentOS7-因为默认openssl版本过低，不支持tls1.3，故推荐更新的系统(自己编译好麻烦~)'
 seconds_left=5
 while [ $seconds_left -gt 0 ];do
     echo -n "$seconds_left 后自动执行，CTRL+C可取消"
@@ -87,76 +87,55 @@ echo '<script language=javascript>
 #添加默认server
 echo 'server
 {
-    listen 443 ssl  reuseport;
-    listen 444 ssl  reuseport proxy_protocol;
-    server_name *.lovegoogle.xyz;
-    ssl_certificate    /etc/nginx/tls/full_chain.pem;
-    ssl_certificate_key    /etc/nginx/tls/private.key;
-    ssl_protocols       TLSv1.2 TLSv1.3;
-    ssl_ciphers  ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
-    # TLS握手优化
-    ssl_early_data on;
-    ssl_stapling on;
-    ssl_stapling_verify on;
-    ssl_session_cache    shared:SSL:1m;
-    ssl_session_timeout  5m;
-    keepalive_timeout    75s;
-    keepalive_requests   100;
-
-    location /update {
-                proxy_pass http://127.0.0.1:1000;
-                proxy_read_timeout 60s;  #与代理服务器读的超时时间
-                proxy_send_timeout 60s;  #与upstream服务器发送的超时时间
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;           #websocket需要
-                proxy_set_header Connection "Upgrade";            #websocket需要
-                set $real_ip $remote_addr;
-                if ( $proxy_protocol_addr != "" ){
-                        set $real_ip $proxy_protocol_addr;
-                }
-                proxy_set_header X-Real-IP $real_ip;
-                proxy_set_header X-Forwarded-For $real_ip;
-    }
+	listen 443 ssl  reuseport fastopen=3;
+	listen 444 ssl  reuseport proxy_protocol fastopen=3;
+	server_name *.lovegoogle.xyz;
+	ssl_certificate    /etc/nginx/tls/full_chain.pem;
+	ssl_certificate_key    /etc/nginx/tls/private.key;
+	ssl_protocols       TLSv1.2 TLSv1.3;
+	ssl_ciphers  ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+	root /etc/nginx/web;
+	# TLS握手优化
+	ssl_early_data on;
+	ssl_stapling on;
+	ssl_stapling_verify on;
+	ssl_session_cache builtin:1000 shared:SSL:10m;
+	ssl_session_timeout  5m;
+	keepalive_timeout    75s;
+	keepalive_requests   100;
+	#直连
+	location /update {
+		proxy_pass http://127.0.0.1:1000;
+		proxy_read_timeout 10s;  #与代理服务器读的超时时间
+		proxy_send_timeout 10s;  #与upstream服务器发送的超时时间
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+	#中转
 	location /download {
-                proxy_pass http://127.0.0.1:1001;
-                proxy_read_timeout 60s;  #与代理服务器读的超时时间
-                proxy_send_timeout 60s;  #与upstream服务器发送的超时时间
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;           #websocket需要
-                proxy_set_header Connection "Upgrade";            #websocket需要
-                set $real_ip $remote_addr;
-                if ( $proxy_protocol_addr != "" ){
-                        set $real_ip $proxy_protocol_addr;
-                }
-                proxy_set_header X-Real-IP $real_ip;
-                proxy_set_header X-Forwarded-For $real_ip;
-    }
-    error_log  /var/log/nginx.error.log;
+		proxy_pass http://127.0.0.1:1001;
+		proxy_read_timeout 10s;  #与代理服务器读的超时时间
+		proxy_send_timeout 10s;  #与upstream服务器发送的超时时间
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+		proxy_set_header X-Real-IP $proxy_protocol_addr;
+		proxy_set_header X-Forwarded-For $proxy_protocol_addr;
+	}
+	#cuocuo
+	location /websocket {
+		proxy_pass http://127.0.0.1:81;
+		proxy_read_timeout 10s;  #与代理服务器读的超时时间
+		proxy_send_timeout 10s;  #与upstream服务器发送的超时时间
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+	error_log  /var/log/nginx.error.log;
 }
-#server 
-#{
-#	listen 80 reuseport;
-#	listen 80 reuseport proxy_protocol;
-#	root /etc/nginx/web;
-#	index index.html;
-#	location / {
-                proxy_pass http://127.0.0.1:1000;
-                proxy_read_timeout 60s;  #与代理服务器读的超时时间
-                proxy_send_timeout 60s;  #与upstream服务器发送的超时时间
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;           #websocket需要
-                proxy_set_header Connection "Upgrade";            #websocket需要
-                set $real_ip $remote_addr;
-				set $real_ip $proxy_protocol_addr;
-                if ( $proxy_protocol_addr != "" ){
-						set $real_ip $remote_addr;
-                        set $real_ip $proxy_protocol_addr;
-                }
-                proxy_set_header X-Real-IP $real_ip;
-                proxy_set_header X-Forwarded-For $real_ip;
-    }
-#	error_log  /var/log/v2ray.error.log;
-#}
 '>/etc/nginx/conf.d/default.conf
 
 #添加证书，并添加计划任务
