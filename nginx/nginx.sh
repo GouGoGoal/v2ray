@@ -131,7 +131,6 @@ echo 'server
                 proxy_set_header X-Real-IP $real_ip;
                 proxy_set_header X-Forwarded-For $real_ip;
     }
-    access_log  /var/log/nginx.log access;
     error_log  /var/log/nginx.error.log;
 }
 #server 
