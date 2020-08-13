@@ -12,7 +12,7 @@ cd v2ray
 chmod +x v2ray v2ctl *.sh
 rm -rf  README.md setup.sh .git*
 #更改对接nodeid
-sed -i "s/id_value/$1/g" config.json
+sed -i "s/id_value/$1/g" config0.json
 #开机自启服务
 echo "[Unit]
 Description=V2Ray@%i Service
@@ -33,5 +33,5 @@ WantedBy=multi-user.target">/etc/systemd/system/v2ray@.service
 systemctl enable v2ray@0
 systemctl restart v2ray@0
 #安装caddy
-bash /root/v2ray/Caddy/caddy.sh
+bash /root/v2ray/nginx/nginx.sh
 
