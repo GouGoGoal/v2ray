@@ -111,8 +111,12 @@ echo 'server
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "Upgrade";
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		set $real_client_ip $remote_addr;
+		if ( $proxy_protocol_addr != "" ){
+			set $real_client_ip $proxy_protocol_addr;
+		}
+		proxy_set_header X-Real-IP $real_client_ip;
+		proxy_set_header X-Forwarded-For $real_client_ip;
 	}
 	#中转
 	location /download {
