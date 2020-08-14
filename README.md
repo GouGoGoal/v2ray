@@ -4,9 +4,10 @@ bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/GouGo
 
 bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/GouGoGoal/v2ray/master/setup.sh') 20 <br>
 
-#替换为nginx<br>
-systemctl disable caddy
-systemctl stop caddy
+##替换为nginx<br>
+
+systemctl disable caddy<br>
+systemctl stop caddy<br>
 bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/GouGoGoal/v2ray/master/nginx/nginx.sh') <br>
 ## 配置<br>
 hkt.lovegoogle.xyz;0;0;tls;ws;path=/update|host=www.lovegoogle.xyz|inside_port=1000|outside_port=443 <br>
