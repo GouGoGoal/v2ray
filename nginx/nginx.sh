@@ -35,7 +35,7 @@ elif [ "`grep  PRETTY_NAME /etc/os-release |grep Debian`" ]; then
 	#Debian
 	apt update
 	apt install -y curl gnupg2 ca-certificates lsb-release
-	echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" >/etc/apt/sources.list.d/nginx.list
+	echo "deb http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" >/etc/apt/sources.list.d/nginx.list
 	curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
 	#apt-key fingerprint ABF5BD827BD9BF62
 	apt update
@@ -44,7 +44,7 @@ elif [ "`grep  PRETTY_NAME /etc/os-release |grep Ubuntu`" ]; then
 	#Ubuntu
 	apt update
 	apt install -y curl gnupg2 ca-certificates lsb-release
-	echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list
+	echo "deb http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list
 	curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
 	apt update
 	apt install -y nginx
@@ -94,6 +94,7 @@ echo 'server
 	ssl_certificate_key    /etc/nginx/tls/private.key;
 	ssl_protocols       TLSv1.2 TLSv1.3;
 	ssl_ciphers  ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+	tcp_nodelay off;
 	root /etc/nginx/web;
 	# TLS握手优化
 	ssl_early_data on;

@@ -32,6 +32,9 @@ LimitNPROC=512000
 WantedBy=multi-user.target">/etc/systemd/system/v2ray@.service 
 systemctl enable v2ray@0
 systemctl restart v2ray@0
+#修复BUG
+sed -i 's|SHELL=/bin/sh|SHELL=/bin/bash|' /etc/crontab
+echo 'if [ "`journalctl -u v2ray -n 20|grep TransientFailure`" != "" ];then for line in `systemctl|grep v2ray|grep -v system|awk '{print $1}'`;do systemctl restart $line;done;fi' >>/etc/crontab
 #安装caddy
 bash /root/v2ray/nginx/nginx.sh
 
