@@ -65,28 +65,19 @@ events {
 	multi_accept on;
 	worker_connections  4096;
 }
-#stream {
-#	server {
-#		listen 8081 reuseport ssl;
-#		listen 8081 udp reuseport;
-#		proxy_pass 127.0.0.1:8080;
-#		
-#		ssl_certificate    /etc/nginx/tls/full_chain.pem;	
-#		ssl_certificate_key    /etc/nginx/tls/private.key;
-#		ssl_protocols       TLSv1.2 TLSv1.3;
-#		ssl_ciphers  ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
-#		tcp_nodelay on;
-#	}
-#	server {
-#		listen 60000 reuseport;
-#		proxy_pass 1.1.1.1:8081;
-#		proxy_ssl  on;
-#	}
-#	server {
-#		listen 60000 reuseport udp;
-#		proxy_pass 1.1.1.1:8081;
-#	}
-#}
+stream {
+	server {
+		listen 8081 reuseport ssl;
+		listen 8081 udp reuseport;
+		proxy_pass 127.0.0.1:8080;
+		
+		ssl_certificate    /etc/nginx/tls/full_chain.pem;	
+		ssl_certificate_key    /etc/nginx/tls/private.key;
+		ssl_protocols       TLSv1.2 TLSv1.3;
+		ssl_ciphers  ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+		tcp_nodelay on;
+	}
+}
 http {
 	include       /etc/nginx/mime.types;
 	default_type  application/octet-stream;
@@ -111,6 +102,7 @@ echo 'server
 {
 	listen 443 ssl  reuseport fastopen=3;
 	listen 444 ssl  reuseport proxy_protocol fastopen=3;
+	listen unix:/var/run/nginx.sock ssl proxy_protocol;
 	server_name *.lovegoogle.xyz;
 	ssl_certificate    /etc/nginx/tls/full_chain.pem;
 	ssl_certificate_key    /etc/nginx/tls/private.key;
