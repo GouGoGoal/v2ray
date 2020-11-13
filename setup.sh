@@ -1,12 +1,16 @@
 #!/bin/bash
 
+if [ "`id -u`" != 0 ];then
+	echo 'SB：请使用root用户执行脚本'
+	exit
+fi
 if [ ! -f "/etc/redhat-release" ];then
     apt install git curl -y
 else 
     yum install git curl -y
 fi
 if [ "$?" != '0' ];then
-	echo 'git curl安装失败，请手动安装成功后再次执行'
+	echo 'SB：git curl安装失败，请手动安装成功后再次执行'
 	exit
 fi
 cd /root
@@ -35,6 +39,7 @@ do
 		fi
 	fi
 done
+
 #如果没有指定-conf，则默认为systemctl status soga
 if [ ! "$conf" ];then 
 	cp example.conf soga.conf
@@ -45,7 +50,17 @@ for i in $*
 do
 	if [ "${i:0:1}" == "-" ];then continue;fi
 	A=`echo $i|awk -F '=' '{print $1}'`
-	sed -i "s|^$A.*|$i|g" $conf
+	#防傻逼限制
+	if [ "$A" == 'node_id' -o "$A" == 'webapi_url' -o  "$A" == 'webapi_mukey' ];then 
+		if [ "`echo $i|awk -F '=' '{print $2}'`" ];then 
+			$A=1
+		else 
+			echo "SB：必须参数$A未填写，请修正后重新执行"
+			rm $conf
+			exit
+		fi
+	fi
+	sed -i "s|^$A|$i|g" $conf
 done
 
 if [ "$conf" == 'soga.conf' ];then 
@@ -58,7 +73,8 @@ else
 	systemctl daemon-reload
 	systemctl enable soga@$conf
 	systemctl start soga@$conf
-	wait 1
+	echo '服务部署完毕，等待三秒将显示服务状态'
+	wait 3
 	systemctl status soga@$conf
 fi
 
