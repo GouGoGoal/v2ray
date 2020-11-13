@@ -45,7 +45,7 @@ for i in $*
 do
 	if [ "${i:0:1}" == "-" ];then continue;fi
 	A=`echo $i|awk -F '=' '{print $1}'`
-	sed -i "s/^$A.*/$i/g" $conf
+	sed -i "s|^$A.*|$i|g" $conf
 done
 
 if [ "$conf" == 'soga.conf' ];then 
@@ -54,9 +54,11 @@ if [ "$conf" == 'soga.conf' ];then
 	systemctl start soga
 	systemctl status soga
 else 
+	conf=`echo $conf|awk -F '.' '{print $1}'`
 	systemctl daemon-reload
 	systemctl enable soga@$conf
 	systemctl start soga@$conf
+	wait 1
 	systemctl status soga@$conf
 fi
 
