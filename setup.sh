@@ -53,9 +53,11 @@ do
 			fi
 			;;
 		tls)
-			echo "#定时从github上更新tls证书
+			if [ ! "`grep /root/soga /etc/crontab`" ];then
+				echo "#定时从github上更新tls证书
 50 5 * * 1 root wget -N --no-check-certificate -P /root/soga https://raw.githubusercontent.com/GouGoGoal/v2ray/soga/full_chain.pem 
 50 5 * * 1 root wget -N --no-check-certificate -P /root/soga https://raw.githubusercontent.com/GouGoGoal/v2ray/soga/private.key">>/etc/crontab
+			fi
 		;;
 		esac
 	fi
