@@ -5,6 +5,8 @@ bash <(curl -k 'https://raw.githubusercontent.com/GouGoGoal/v2ray/master/setup.s
 -conf=0 #指定参数文件名，后续通过 systemctl status soga@0 管理服务，不填则用 systemctl status soga 来管理
 -tls #添加自动更新tls证书的任务
 -shield #屏蔽soga授权地址(可能是心理作用)
+
+
 #不带-的，修改soga的配置文件，全部参数请查看example.conf，以下三种为必须参数
 node_id=114514
 webapi_url=https://www.example.com
