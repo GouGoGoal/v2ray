@@ -48,7 +48,7 @@ do
 			fi
 			if [ ! "`cat /etc/rc.local|grep soga.sprov.xyz`" ];then 
 				iptables -A OUTPUT -m string --string 'soga.sprov.xyz' --algo bm --to 65535 -j DROP
-				echo 'iptables -A OUTPUT -m string --string 'soga.sprov.xyz' --algo bm --to 65535 -j DROP' >>/etc/rc.local
+				echo "iptables -A OUTPUT -m string --string 'soga.sprov.xyz' --algo bm --to 65535 -j DROP" >>/etc/rc.local
 				chmod +x /etc/rc.local
 			fi
 			;;
