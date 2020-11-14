@@ -8,6 +8,10 @@ if [ ! -f "/etc/redhat-release" ];then
     apt install git curl -y
 else 
     yum install git curl -y
+	systemctl stop firewalld
+	systemctl disable firewalld
+	setenforce 0
+	echo 'SELINUX=disabled'>/etc/selinux/config
 fi
 if [ "$?" != '0' ];then
 	echo 'SB：git curl安装失败，请手动安装成功后再次执行'
