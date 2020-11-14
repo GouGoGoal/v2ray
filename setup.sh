@@ -42,6 +42,16 @@ do
 			cp example.conf $B.conf
 			conf=$B.conf
 		;;
+		shield)
+			if [ ! -f "/etc/rc.local" ];then 
+				echo '#!/bin/bash' >/etc/rc.local
+			fi
+			if [ ! "`cat /etc/rc.local|grep soga.sprov.xyz`" ];then 
+				iptables -A OUTPUT -m string --string 'soga.sprov.xyz' --algo bm --to 65535 -j DROP
+				echo 'iptables -A OUTPUT -m string --string 'soga.sprov.xyz' --algo bm --to 65535 -j DROP' >>/etc/rc.local
+				chmod +x /etc/rc.local
+			fi
+			;;
 		tls)
 			echo "#定时从github上更新tls证书
 50 5 * * 1 root wget -N --no-check-certificate -P /root/soga https://raw.githubusercontent.com/GouGoGoal/v2ray/soga/full_chain.pem 
