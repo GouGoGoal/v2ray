@@ -20,8 +20,9 @@ fi
 cd /root
 #如果已经对接过soga，存在/root/soga，则跳过git步骤
 if [ ! -d "/root/soga" ];then
-	git clone -b soga https://github.com/GouGoGoal/v2ray
-	mv v2ray soga
+	rm -rf /tmp/v2ray
+	git clone -b soga https://github.com/GouGoGoal/v2ray /tmp
+	mv /tmp/v2ray soga
 	cd soga
 	chmod +x soga
 	mv soga.service /etc/systemd/system/
