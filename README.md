@@ -1,5 +1,5 @@
 ```
-bash <(curl -k 'https://raw.githubusercontent.com/GouGoGoal/v2ray/master/setup.sh') node_id=114514 -webapi_url=https://www.example.com webapi_mukey=password [...]
+bash <(curl -k 'https://raw.githubusercontent.com/GouGoGoal/v2ray/soga/setup.sh') node_id=114514 webapi_url=https://www.example.com webapi_mukey=password [...]
 #参数分为两种，带- 和不带-的
 #带-的不涉及对接信息，都是非必须参数
 -conf=0 #指定参数文件名，后续通过 systemctl status soga@0 管理服务，不填则用 systemctl status soga 来管理
