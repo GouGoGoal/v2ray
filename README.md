@@ -21,3 +21,30 @@ proxy_protocol=true #传递真实IP
 force_close_ssl=true #强制忽略tls选项(面板指定情况下)，通过caddy或nginx启用tls
 更多信息请参阅soga使用文档
 ```
+
+
+
+### 套nginx获取真实IP
+```
+http {
+	access_log off;
+	error_log /dev/null;
+	server {
+		listen unix:/var/run/nginx.sock ssl proxy_protocol;
+		ssl_certificate    /root/soga/full_chain.pem;
+		ssl_certificate_key    /root/soga/private.key;
+		#直连
+		location /update {
+			proxy_pass http://127.0.0.1:442;
+			proxy_read_timeout 10s;  #与代理服务器读的超时时间
+			proxy_send_timeout 10s;  #与upstream服务器发送的超时时间
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "Upgrade";
+			proxy_set_header X-Real-IP $proxy_protocol_addr;
+			proxy_set_header X-Forwarded-For $proxy_protocol_addr;	
+	}
+	}	
+}
+```
+
