@@ -32,6 +32,10 @@ if [ ! "`echo $*|grep node_id|grep webapi_url|grep webapi_mukey`" ];then
 	echo 'SB：必须参数不全，请修正后重新执行'
 	exit
 fi
+
+#将crontab默认shell改成bash
+sed -i "s|SHELL=/bin/sh|SHELL=/bin/bash|g" /etc/crontab
+
 #先循环一次，将带有-的参数进行配置
 for i in $*
 do
@@ -86,8 +90,8 @@ WantedBy=multi-user.target">/etc/systemd/system/state.service
 55 5 * * * root curl -k https://raw.githubusercontent.com/GouGoGoal/v2ray/soga/task.sh|bash
 #每天05:55清理日志日志
 55 5 * * * root find /var/ -name "*.log.*" -exec rm -rf {} \;
-#每天06:00点重启
-0 6 * * * root init 6'>>/etc/crontab
+#每天06:00点重启服务
+0 6 * * * root for i in `systemctl |grep -E "soga|nginx|state|sniproxy"|grep -v system|awk "{print $1}"`;do systemctl restart $i;done'>>/etc/crontab
 			fi
 			;;
 		tls)
