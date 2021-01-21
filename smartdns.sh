@@ -7,15 +7,17 @@ echo `host -4 -T -t A -W 1 $1 $DNS|sed 1,3d|grep -E -o "([0-9]{1,3}[\.]){3}[0-9]
 }
 
 #获取当前的流媒体解锁IP，若不解锁某区域的流媒体注释掉即可
-twip=`DTI unlock.tw.soulout.club`
-hkip=`DTI unlock.hk.soulout.club`
-jpip=`DTI unlock.jp.soulout.club`
-usip=`DTI unlock.us.soulout.club`
-sgip=`DTI unlock.sg.soulout.club`
-#cnip=`DTI unlock.cn.soulout.club`
+twip=`DTI unlock.tw.xtls.space`
+hkip=`DTI unlock.hk.xtls.space`
+jpip=`DTI unlock.jp.xtls.space`
+usip=`DTI unlock.us.xtls.space`
+sgip=`DTI unlock.sg.xtls.space`
+#cnip=`DTI unlock.cn.xtls.space`
 
 #奈飞IP，就近解锁，美国鸡就写usip
-nfip=$sgip
+#nfip=$sgip
+
+#daznip=$jpip
 
 #若查询不到则赋值为-，即忽略
 if [ ! "$twip" ];then twip='-';fi
@@ -108,11 +110,11 @@ address /nimg.jp/$jpip
 address /hulu.jp/$jpip
 address /hjholdings.tv/$jpip
 #DAZN
-address /dazn.com/$jpip
-address /indazn.com/$jpip
-address /dazn-api.com/$jpip
-address /dazndn.com/$jpip
-#address /akamaized.net/$jpip
+address /dazn.com/$daznip
+address /indazn.com/$daznip
+address /dazn-api.com/$daznip
+address /dazndn.com/$daznip
+#address /akamaized.net/$daznip
 #DMM
 address /dmm.com/$jpip
 #日本Paravi
@@ -163,7 +165,7 @@ address /ykimg.com/$cnip
 address /mgtv.com/$cnip
 address /hitv.com/$cnip
 
-#address /api.soulout.club/172.93.188.102
+#address /api.xtls.space/172.93.188.102
 ">/etc/smartdns.conf
 #重启服务
 systemctl restart smartdns
@@ -191,7 +193,7 @@ else iptables -t nat -D OUTPUT -p udp --dport 53 -j DNAT --to-destination 127.0.
 fi
 
 #NAT小鸡解锁作服务端，请自行更改映射出来的80公网IP端口
-natip=$cnip
+#natip=$cnip
 #if [ "`iptables -t nat -nL|grep DNAT|grep -w $natip|grep dpt:80`" == "" ]; then
 #		number=`iptables -t nat -nL --line-number|grep dpt:80|awk -F ' ' '{print $1}'|head -1`
 #		if [ "$number" == "" ];then iptables -t nat -D OUTPUT $number;fi
