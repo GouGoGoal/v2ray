@@ -27,6 +27,7 @@ if [ ! "$usip" ];then usip='-';fi
 if [ ! "$sgip" ];then sgip='-';fi
 if [ ! "$cnip" ];then cnip='-';fi
 if [ ! "$nfip" ];then nfip='-';fi
+if [ ! "$daznip" ];then daznip='-';fi
 
 #定义刷新smartdns参数并重启的函数
 flush_smartdns_conf() {
