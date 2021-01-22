@@ -11,7 +11,7 @@ twip=`DTI unlock.tw.xtls.space`
 hkip=`DTI unlock.hk.xtls.space`
 jpip=`DTI unlock.jp.xtls.space`
 usip=`DTI unlock.us.xtls.space`
-sgip=`DTI unlock.sg.xtls.space`
+#sgip=`DTI unlock.sg.xtls.space`
 #cnip=`DTI unlock.cn.xtls.space`
 
 #奈飞IP，就近解锁，美国鸡就写usip
@@ -177,11 +177,11 @@ if [ ! -f "/etc/smartdns.conf" ]; then
 	flush_smartdns_conf
 else
 	#对比IP变化，有变化就刷新重启smartdns
-	if [ ! "`grep $twip /etc/smartdns.conf`" -o ! "`grep $hkip /etc/smartdns.conf`" -o ! "`grep $jpip /etc/smartdns.conf`" -o ! "`grep $usip /etc/smartdns.conf`" -o ! "`grep $sgip /etc/smartdns.conf`" -o ! "`grep $cnip /etc/smartdns.conf`" ];then
+	if [ "`grep -m 1 $twip /etc/smartdns.conf`" -a "`grep -m 1 $hkip /etc/smartdns.conf`" -a "`grep -m 1 $jpip /etc/smartdns.conf`" -a "`grep -m 1 $usip /etc/smartdns.conf`" -a "`grep -m 1 $sgip /etc/smartdns.conf`" -a "`grep -m 1 $cnip /etc/smartdns.conf`" ];then
+		echo 'IP无变化，退出脚本'
+	else 
 		echo 'IP有变化，已重新生成配置文件'
 		flush_smartdns_conf
-	else 
-		echo 'IP无变化，退出脚本'
 	fi     
 fi
 
