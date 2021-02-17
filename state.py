@@ -6,12 +6,12 @@
 # 时间: 20191224
 # 说明: 默认情况下修改server和user就可以了。
 
-SERVER = "state.soulout.club"
-USER = "node.lovegoogle.xyz"
+SERVER = "state.xtls.space"
+USER = "node"
 
 
 PORT = 82
-PASSWORD = "souloutclub"
+PASSWORD = "114514"
 INTERVAL = 1
 PORBEPORT = 80
 
