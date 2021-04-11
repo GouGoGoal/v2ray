@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sed -i "s|soulout.club|xtls.space|g" /etc/state.py
-systemctl restart state
+wget  https://github.com/GouGoGoal/v2ray/raw/soga/ban.conf -O /etc/ban.conf
+systemctl restart smartdns
 
 
