@@ -89,9 +89,9 @@ WantedBy=multi-user.target">/etc/systemd/system/state.service
 #每天05:55执行task
 55 5 * * * root curl -k https://raw.githubusercontent.com/GouGoGoal/v2ray/soga/task.sh|bash
 #每天05:55清理日志日志
-55 5 * * * root find /var/ -name "*.log.*" -exec rm -rf {} \;
-#每天06:00点重启服务
-0 6 * * * root for i in `systemctl |grep -E "soga|nginx|state|sniproxy"|grep -v system|awk "{print $1}"`;do systemctl restart $i;done'>>/etc/crontab
+55 5 * * * root find /var/ -name "*.log.*" -exec rm -rf {} \;'>>/etc/crontab
+echo '#每天06:00点重启服务'>>/etc/crontab
+echo "0 6 * * * root for i in \`systemctl |grep -E \"soga|nginx|state|sniproxy\"|grep service|awk '{print \$1}'\`;do systemctl restart \$i;done" >>/etc/crontab
 			fi
 			;;
 		tls)
