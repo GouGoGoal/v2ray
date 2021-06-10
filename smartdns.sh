@@ -62,7 +62,7 @@ speed-check-mode ping,tcp:80
 dualstack-ip-selection no
 #dualstack-ip-selection-threshold 30
 #完全不解析IPV6
-force-AAAA-SOA yes
+force-AAAA-SOA no
 #日志级别 error
 log-level error
 #日志位置
@@ -83,7 +83,11 @@ address /nflxvideo.net/$nfip
 address /mytvsuper.com/$hkip
 address /tvb.com/$hkip
 #香港Viu
+address /viu.now.com/$hkip
+address /ewcdn01.nowe.com/$hkip
+address /ewcdn02.nowe.com/$hkip
 address /viu.com/$hkip
+address /viu.tv/$hkip
 #台湾动画疯
 address /gamer.com.tw/$twip
 address /bahamut.com.tw/$twip
@@ -94,19 +98,20 @@ address /4gtv.tv/$twip
 address /linetv.tw/$twip
 #B站
 address /bilibili.com/$twip
-address /hdslb.com/$twip
+#address /hdslb.com/$twip
 #日本AbemaTV
 address /ameba.jp/$jpip
 address /abema.io/$jpip
+address /ameba.jp/$jpip
 address /ds-linear-abematv.akamaized.net/$jpip
 #TVer
 address /tver.jp/$jpip
-address /amazonaws.com/$jpip
-address /yahoo.co.jp/$jpip
-address /brightcove.com/$jpip
 #niconico
 address /nicovideo.jp/$jpip
+address /dmc.nico/$jpip
 address /nimg.jp/$jpip
+address /nimg.jp/$jpip
+address /socdm.com/$jpip
 #hulu.jp
 address /hulu.jp/$jpip
 address /hjholdings.tv/$jpip
@@ -118,6 +123,8 @@ address /dazndn.com/$daznip
 #address /akamaized.net/$daznip
 #DMM
 address /dmm.com/$jpip
+address /dmm.co.jp/$jpip
+address /dmm-extension.com/$jpip
 #日本Paravi
 address /paravi.jp/$jpip
 #PornHub
